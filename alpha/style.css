@@ -1,0 +1,22 @@
+#searchBars {
+  width: 100%;
+  height: 120px;
+}
+
+#randomBar {
+  float: right;
+  margin-right: 120px;
+  margin-top: 50px;
+}
+
+#paramBar {
+  float: left;
+}
+
+#beerLists {
+  width: 100%;
+}
+
+#header {
+  text-align: center;
+}
