@@ -22,30 +22,36 @@ Vue.component('searchBar', {
   },
 
   template: `
-    <div id="searchBar">
-      <form @submit.prevent="getRandom">
-        <input type="submit" value="Get 10 Random Beers">
-      </form>
+    <div>
+      <div id="searchBars">
+        <div id="randomBar">
+          <form @submit.prevent="getRandom">
+            <input type="submit" value="Get 10 Random Beers">
+          </form>
+        </div>
 
-      <p v-if="errors.length">
-         <li v-for="error in errors">{{ error }}</li>
-      </p>
+        <div id="paramBar">
+          <p v-if="errors.length">
+             <li v-for="error in errors">{{ error }}</li>
+          </p>
 
-      <form @submit.prevent="getSpecified">
-        <p>
-          <label for="abv">Max ABV (Alcohol by Volume)</label>
-          <input v-model.number="abv">
-        </p>
+          <form @submit.prevent="getSpecified">
+            <p>
+              <label for="abv">Max ABV (Alcohol by Volume)</label>
+              <input v-model.number="abv">
+            </p>
 
-        <p>
-          <label for="ibu">Max IBU (International Bitterness Units)</label>
-          <input v-model.number="ibu">
-        </p>
+            <p>
+              <label for="ibu">Max IBU (International Bitterness Units)</label>
+              <input v-model.number="ibu">
+            </p>
 
-        <p>
-          <input type="submit" value="Get Specified Beers">
-        </p>
-      </form>
+            <p>
+              <input type="submit" value="Get Specified Beers">
+            </p>
+          </form>
+        </div>
+      </div>
 
       <beerList :favorites="favorites" :beers="beers"></beerList>
     </div>
@@ -169,18 +175,26 @@ Vue.component('beerList', {
 
   template: `
     <div id="beerLists">
-      <h3 v-if="beers.length">Beer Batch</h3>
+      <div id="batchList">
 
-      <ul id="batchList">
-        <li v-for="beer in beers"><button v-on:click="toggleFavorite(beer)"> {{ fave(beer) }} </button> {{ formattedBeer(beer) }}</li>
-      </ul>
+        <h3 v-if="beers.length">Beer Batch</h3>
 
-      <h3>Favorite Beers</h3>
+        <ul>
+          <li v-for="beer in beers"><button v-on:click="toggleFavorite(beer)"> {{ fave(beer) }} </button> {{ formattedBeer(beer) }}</li>
+        </ul>
 
-      <p v-if="!favorites.length">No favorited beers...</p>
-      <ul id="faveList">
-        <li v-for="beer in favorites"><button v-on:click="toggleFavorite(beer)"> {{ fave(beer) }} </button> {{ formattedBeer(beer) }}</li>
-      </ul>
+      </div>
+
+      <div id="faveList">
+
+        <h3>Favorite Beers</h3>
+
+        <p v-if="!favorites.length">No favorited beers...</p>
+        <ul>
+          <li v-for="beer in favorites"><button v-on:click="toggleFavorite(beer)"> {{ fave(beer) }} </button> {{ formattedBeer(beer) }}</li>
+        </ul>
+
+      </div>
     </div>
   `,
 
